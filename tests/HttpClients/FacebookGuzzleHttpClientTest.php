@@ -66,17 +66,12 @@ class FacebookGuzzleHttpClientTest extends AbstractTestHttpClient
                 }
                 unset($arg['headers']);
 
-                $caInfo = array_diff_assoc($arg, [
-                    'body' => 'foo_body',
-                    'timeout' => 123,
+                if (array_diff_assoc($arg, [
+                    'body'            => 'foo_body',
+                    'timeout'         => 123,
+                    'http_errors'     => false,
                     'connect_timeout' => 10,
-                ]);
-
-                if (count($caInfo) !== 1) {
-                    return false;
-                }
-
-                if (1 !== preg_match('/.+\/certs\/DigiCertHighAssuranceEVRootCA\.pem$/', $caInfo['verify'])) {
+                ])) {
                     return false;
                 }
 
@@ -115,17 +110,12 @@ class FacebookGuzzleHttpClientTest extends AbstractTestHttpClient
                 }
                 unset($arg['headers']);
 
-                $caInfo = array_diff_assoc($arg, [
-                    'body' => 'foo_body',
-                    'timeout' => 60,
+                if (array_diff_assoc($arg, [
+                    'body'            => 'foo_body',
+                    'timeout'         => 60,
+                    'http_errors'     => false,
                     'connect_timeout' => 10,
-                ]);
-
-                if (count($caInfo) !== 1) {
-                    return false;
-                }
-
-                if (1 !== preg_match('/.+\/certs\/DigiCertHighAssuranceEVRootCA\.pem$/', $caInfo['verify'])) {
+                ])) {
                     return false;
                 }
 
